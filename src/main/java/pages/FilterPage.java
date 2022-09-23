@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,6 +30,9 @@ public class FilterPage extends BasePage {
     @FindBy(css = ".close")
     private WebElement filterClearance;
 
+    @FindBy(css = ".overlay__content")
+    private WebElement loadingOverlay;
+
     public String[] getPricesFromPriceRange() {
         String priceRangeTxt = priceRange.getText().replaceAll("\\$", "").replaceAll(".00", "");
 
@@ -39,7 +43,7 @@ public class FilterPage extends BasePage {
         return priceBounds;
     }
 
-    public FilterPage setPriceFilter(int lowerBoundToSet, int higherBoundToSet) throws InterruptedException {
+    public FilterPage setPriceFilter(int lowerBoundToSet, int higherBoundToSet) {
         String[] priceBounds = getPricesFromPriceRange();
         int lowerBound = Integer.parseInt(priceBounds[0]);
         int higherBound = Integer.parseInt(priceBounds[1]);
@@ -48,7 +52,7 @@ public class FilterPage extends BasePage {
         if (lowerBoundToSet > lowerBound && lowerBoundToSet < higherBound) {
             for (int i = lowerBound; i < lowerBoundToSet; i++) {
                 leftSlider.sendKeys(Keys.ARROW_RIGHT);
-                Thread.sleep(300);
+                wait.until(ExpectedConditions.invisibilityOf(loadingOverlay));
                 logger.info("----------> Moved left slider to the right <----------");
             }
         } else {
@@ -58,7 +62,7 @@ public class FilterPage extends BasePage {
         if (higherBoundToSet < higherBound && higherBoundToSet > lowerBoundToSet) {
             for (int i = higherBound; i > higherBoundToSet; i--) {
                 rightSlider.sendKeys(Keys.ARROW_LEFT);
-                Thread.sleep(300);
+                wait.until(ExpectedConditions.invisibilityOf(loadingOverlay));
                 logger.info("----------> Moved right slider to the left <----------");
             }
         } else {
@@ -73,9 +77,9 @@ public class FilterPage extends BasePage {
         return priceRange.getText();
     }
 
-    public void clearFilter() throws InterruptedException {
+    public void clearFilter() {
         logger.info("----------> Clearing the filter <----------");
         filterClearance.click();
-        Thread.sleep(300);
+        wait.until(ExpectedConditions.invisibilityOf(loadingOverlay));
     }
 }

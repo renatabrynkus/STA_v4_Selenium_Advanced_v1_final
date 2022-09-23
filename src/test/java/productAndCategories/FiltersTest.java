@@ -13,7 +13,7 @@ public class FiltersTest extends TestBase {
 
     @ParameterizedTest
     @CsvSource(value = {"9, 10"})
-    void shouldDisplayCorrectProductsForFilter(int lowerBound, int higherBound) throws InterruptedException {
+    void shouldDisplayCorrectProductsForFilter(int lowerBound, int higherBound) {
         logger.info("----------> Started test shouldDisplayCorrectProductsForFilter() <----------");
         HeaderPage headerPage = new HeaderPage(driver);
         FilterPage filterPage = new FilterPage(driver);
