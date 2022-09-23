@@ -1,0 +1,7 @@
+browser:
+  browserName: CHROME
+  browser.attachscreenshot: true
+  browser.headless: true
+  browser.webelement.timeout: 60
+environment:
+  appUrl: http://146.59.32.4/index.php
