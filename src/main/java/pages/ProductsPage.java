@@ -49,7 +49,7 @@ public class ProductsPage extends BasePage {
 
     public String getRandomProductName() {
         Random random = new Random();
-        String randomProductName= getAllProducts().get(random.nextInt(popularProducts.size())).getProductName();
+        String randomProductName = getAllProducts().get(random.nextInt(popularProducts.size())).getProductName();
         logger.info("----------> Random product name is {} ", randomProductName + " <----------");
         return randomProductName;
     }

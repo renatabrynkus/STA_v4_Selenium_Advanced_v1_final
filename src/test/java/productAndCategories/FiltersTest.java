@@ -22,9 +22,9 @@ public class FiltersTest extends TestBase {
         headerPage.clickOnCategory("ART")
                 .isSideFilterDisplayed();
         int noOfProductsInCategory = productsPage.getProductsSize(productsPage.getAllProducts());
+
         filterPage.setPriceFilter(lowerBound, higherBound);
         assertThat(productsPage.areProductsInPriceRange(lowerBound, higherBound)).isTrue();
-
         filterPage.clearFilter();
         assertThat(noOfProductsInCategory).isEqualTo(productsPage.getProductsSize(productsPage.getAllProducts()));
     }
