@@ -27,9 +27,6 @@ public class HeaderPage extends BasePage {
     @FindBy(css = "#top-menu > .category")
     private List<WebElement> categories;
 
-    @FindBy(css = "")
-    private WebElement artCategory;
-
     public HeaderPage enterTextToSearchField(String search) {
         searchField.sendKeys(search);
         return this;
@@ -78,7 +75,11 @@ public class HeaderPage extends BasePage {
         return new CategoryPage(driver);
     }
 
-//    public CategoryPage goToCategoryArt() {
-//
-//    }
+    public int getCategoriesSize() {
+        return categories.size();
+    }
+
+    public WebElement getCategory(int i) {
+        return categories.get(i);
+    }
 }

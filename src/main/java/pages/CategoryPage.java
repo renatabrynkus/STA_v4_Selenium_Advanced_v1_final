@@ -53,6 +53,14 @@ public class CategoryPage extends BasePage {
         return subcategories;
     }
 
+    public int getSubcategoriesSize() {
+        return subcategories.size();
+    }
+
+    public WebElement getSubcategory(int j) {
+        return subcategories.get(j);
+    }
+
     public String getSubcategoryName(WebElement subcategory) {
         String subcategoryName = subcategory.getText();
         logger.info("----------> Subcategory in left menu is {}", subcategoryName + " <----------");

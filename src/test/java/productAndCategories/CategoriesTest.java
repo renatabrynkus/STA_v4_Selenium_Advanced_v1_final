@@ -6,8 +6,6 @@ import org.openqa.selenium.WebElement;
 import pages.CategoryPage;
 import pages.HeaderPage;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CategoriesTest extends TestBase {
@@ -16,12 +14,11 @@ public class CategoriesTest extends TestBase {
     void shouldCheckCategories() {
         logger.info("----------> started test shouldCheckCategories <-----------");
         HeaderPage headerPage = new HeaderPage(driver);
-        List<WebElement> categories = headerPage.getCategories();
 
-        for (int i = 0; i < categories.size(); i++) {
-            CategoryPage categoryPage = headerPage.goToCategory(categories.get(i));
+        for (int i = 0; i < headerPage.getCategoriesSize(); i++) {
+            CategoryPage categoryPage = headerPage.goToCategory(headerPage.getCategory(i));
 
-            assertThat(categoryPage.getCategoryName()).isEqualTo(headerPage.getCategoryName(categories.get(i)));
+            assertThat(categoryPage.getCategoryName()).isEqualTo(headerPage.getCategoryName(headerPage.getCategory(i)));
             assertThat(categoryPage.isSideFilterDisplayed()).isTrue();
             assertThat(categoryPage.getNumberOfProductsInCategoryMsg()).isEqualTo(categoryPage.countProductsInCategory());
         }
@@ -31,15 +28,13 @@ public class CategoriesTest extends TestBase {
     void shouldCheckSubcategories() {
         logger.info("----------> Started test shouldCheckSubcategories() <----------");
         HeaderPage headerPage = new HeaderPage(driver);
-        List<WebElement> categories = headerPage.getCategories();
 
-        for (int i = 0; i < categories.size(); i++) {
-            CategoryPage categoryPage = headerPage.goToCategory(categories.get(i));
+        for (int i = 0; i < headerPage.getCategoriesSize(); i++) {
+            CategoryPage categoryPage = headerPage.goToCategory(headerPage.getCategory(i));
             if (categoryPage.areSubcategoriesAvailable()) {
-                List<WebElement> subcategories = categoryPage.getSubcategories();
 
-                for (int j = 0; j < subcategories.size(); j++) {
-                    WebElement currentCategory = subcategories.get(j);
+                for (int j = 0; j < categoryPage.getSubcategoriesSize(); j++) {
+                    WebElement currentCategory = categoryPage.getSubcategory(j);
                     String subcategoryName = categoryPage.getSubcategoryName(currentCategory);
                     currentCategory.click();
 
