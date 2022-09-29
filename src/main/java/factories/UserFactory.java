@@ -13,7 +13,7 @@ public class UserFactory {
     public User getRandomUser() {
         FakeValuesService fakeValuesService = new FakeValuesService(new Locale("pl-PL"), new RandomService());
         Faker faker = new Faker();
-        User user = User.builder()
+        return User.builder()
                 .socialTitle("Mr.")
                 .firstName(faker.name().firstName())
                 .lastName(faker.name().lastName())
@@ -25,13 +25,10 @@ public class UserFactory {
                 .newsletterFlag(faker.random().nextBoolean())
                 .privacyPolicyFlag(true)
                 .build();
-        return user;
     }
-
 
     private static String getFakeBirthDate(Faker faker) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        String birthDate = simpleDateFormat.format(faker.date().birthday());
-        return birthDate;
+        return simpleDateFormat.format(faker.date().birthday());
     }
 }

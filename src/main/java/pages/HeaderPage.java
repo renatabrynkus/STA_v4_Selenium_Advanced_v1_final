@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HeaderPage extends BasePage {
@@ -18,7 +19,7 @@ public class HeaderPage extends BasePage {
     @FindBy(css = ".search")
     private WebElement searchBtn;
 
-    @FindBy(css = ".ui-corner-all")
+    @FindBy(css = ".ui-corner-all > .product")
     private List<WebElement> dropdownList;
 
     @FindBy(css = ".ui-autocomplete")
@@ -36,16 +37,37 @@ public class HeaderPage extends BasePage {
         searchBtn.click();
     }
 
-    public boolean ifAllDropdownProductsContainName(String productName) {
+//    public boolean ifAllDropdownProductsContainName(String productName) {
+//        wait.until(ExpectedConditions.visibilityOf(dropdown));
+//        for (WebElement dropdownProduct : dropdownList) {
+//            if (!dropdownProduct.getText().contains(productName)) {
+//                logger.info("----------> There are products that don't contain {}", productName + " <----------");
+//                return false;
+//            }
+//        }
+//        logger.info("----------> All products contain {}", productName + " <----------");
+//        return true;
+//    }
+
+//    public List<String> getAllProductsFromDropdownList() {
+//        List<String> productsFromDropdownStrings = new ArrayList<>();
+//        wait.until(ExpectedConditions.visibilityOf(dropdown));
+//        for (WebElement productFromDropdown : dropdownList) {
+//            productsFromDropdownStrings.add(productFromDropdown.getText());
+//            logger.info("-----> Product name in dropdown is {}", productFromDropdown.getText() + " <-----");
+//        }
+//        System.out.println(" ------------- KONIEC PETLI");
+//        return productsFromDropdownStrings;
+//    }
+
+    public int getDropdownSize() {
         wait.until(ExpectedConditions.visibilityOf(dropdown));
-        for (WebElement dropdownProduct : dropdownList) {
-            if (!dropdownProduct.getText().contains(productName)) {
-                logger.info("----------> There are products that don't contain {}", productName + " <----------");
-                return false;
-            }
-        }
-        logger.info("----------> All products contain {}", productName + " <----------");
-        return true;
+        return dropdownList.size();
+    }
+
+    public String getProductFromDropdownStr(int i) {
+        logger.info("-----> Product name in dropdown is {}", dropdownList.get(i).getText() + " <-----");
+        return dropdownList.get(i).getText();
     }
 
     public List<WebElement> getCategories() {
@@ -56,7 +78,6 @@ public class HeaderPage extends BasePage {
         for (WebElement category : categories) {
             if (category.getText().equals(categoryName)) {
                 category.click();
-
             } else {
                 logger.info("The categories don't match");
             }
