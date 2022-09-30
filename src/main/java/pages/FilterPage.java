@@ -42,7 +42,7 @@ public class FilterPage extends BasePage {
         return priceBounds;
     }
 
-    public FilterPage setPriceFilter(int lowerBoundToSet, int higherBoundToSet) {
+    public FilterPage setPriceFilter(double lowerBoundToSet, double higherBoundToSet) {
         String[] priceBounds = getPricesFromPriceRange();
         int lowerBound = Integer.parseInt(priceBounds[0]);
         int higherBound = Integer.parseInt(priceBounds[1]);
@@ -69,6 +69,9 @@ public class FilterPage extends BasePage {
         }
         getPriceRange();
         return this;
+    }
+
+    private void moveSlider() {
     }
 
     public String getPriceRange() {

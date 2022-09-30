@@ -25,7 +25,7 @@ public class SearchTest extends Pages {
         logger.info("----------> Checking if all products have a word {} ", productName + " <----------");
         headerPage.enterTextToSearchField(productName);
         for (int i = 0; i < headerPage.getDropdownSize(); i++) {
-            assertThat(headerPage.getProductFromDropdownStr(i)).contains("HUMMINGBIRD");
+            assertThat(headerPage.getProductFromDropdownStr(i)).contains(productName);
         }
     }
 }

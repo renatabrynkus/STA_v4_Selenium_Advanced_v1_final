@@ -9,11 +9,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class FiltersTest extends Pages {
 
     @ParameterizedTest
-    @CsvSource(value = {"9, 10"})
-    void shouldDisplayCorrectProductsForFilter(int lowerBound, int higherBound) {
+    @CsvSource(value = {"ART, 9.00, 10.00"})
+    void shouldDisplayCorrectProductsForFilter(String category, double lowerBound, double higherBound) {
         logger.info("----------> Started test shouldDisplayCorrectProductsForFilter() <----------");
 
-        headerPage.clickOnCategory("ART")
+        headerPage.clickOnCategory(category)
                 .isSideFilterDisplayed();
         int noOfProductsInCategory = productsPage.getProductsSize(productsPage.getAllProducts());
 

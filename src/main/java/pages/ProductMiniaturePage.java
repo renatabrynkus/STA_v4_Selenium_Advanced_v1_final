@@ -11,18 +11,26 @@ public class ProductMiniaturePage {
         PageFactory.initElements(new DefaultElementLocatorFactory(productMiniature), this);
     }
 
-    @FindBy(css = ".h3.product-title")
+    @FindBy(css = ".h3.product-title > a")
     private WebElement productName;
 
     @FindBy(css = "div .price")
     private WebElement price;
 
+    @FindBy(css = ".thumbnail")
+    private WebElement thumbnail;
+
     public String getProductName() {
         return productName.getText();
     }
 
-    public int getPrice() {
-        String productPrice = price.getText().replaceAll("\\$", "").replaceAll(".00", "");
-        return Integer.parseInt(productPrice);
+    public double getPrice() {
+        String productPrice = price.getText().replaceAll("\\$", "");
+        return Double.parseDouble(productPrice);
     }
+
+    public WebElement getThumbnail() {
+        return thumbnail;
+    }
+
 }

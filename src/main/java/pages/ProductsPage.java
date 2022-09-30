@@ -25,19 +25,29 @@ public class ProductsPage extends BasePage {
         return allPopularProductsPOP;
     }
 
+    public void openProduct(String productToOpen) {
+        for (ProductMiniaturePage productMiniature : getAllProducts()) {
+            if (productMiniature.getProductName().equals(productToOpen)) {
+                logger.info("-----> Clicking on {}", productMiniature.getProductName());
+                productMiniature.getThumbnail().click();
+                break;
+            }
+        }
+    }
+
     public int getProductsSize(List<ProductMiniaturePage> products) {
-        logger.info("---------> The size of products list is {} ", products.size() + " <----------");
+        logger.info("----> The size of products list is {} ", products.size() + " <-----");
         return products.size();
     }
 
-    public boolean areProductsInPriceRange(int lowerBound, int higherBound) {
+    public boolean areProductsInPriceRange(double lowerBound, double higherBound) {
         for (ProductMiniaturePage popularProduct : getAllProducts()) {
             if (!(popularProduct.getPrice() >= lowerBound) && !(popularProduct.getPrice() <= higherBound)) {
                 logger.info("----------> The product {} is not in the specified range", popularProduct.getProductName());
                 return false;
             }
         }
-        logger.info("----------> All products are in the specified price range <----------");
+        logger.info("-----> All products are in the specified price range <-----");
         return true;
     }
 
@@ -53,5 +63,4 @@ public class ProductsPage extends BasePage {
         logger.info("----------> Random product name is {} ", randomProductName + " <----------");
         return randomProductName;
     }
-
 }

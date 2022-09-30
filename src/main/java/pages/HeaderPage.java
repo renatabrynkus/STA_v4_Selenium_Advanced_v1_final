@@ -37,29 +37,6 @@ public class HeaderPage extends BasePage {
         searchBtn.click();
     }
 
-//    public boolean ifAllDropdownProductsContainName(String productName) {
-//        wait.until(ExpectedConditions.visibilityOf(dropdown));
-//        for (WebElement dropdownProduct : dropdownList) {
-//            if (!dropdownProduct.getText().contains(productName)) {
-//                logger.info("----------> There are products that don't contain {}", productName + " <----------");
-//                return false;
-//            }
-//        }
-//        logger.info("----------> All products contain {}", productName + " <----------");
-//        return true;
-//    }
-
-//    public List<String> getAllProductsFromDropdownList() {
-//        List<String> productsFromDropdownStrings = new ArrayList<>();
-//        wait.until(ExpectedConditions.visibilityOf(dropdown));
-//        for (WebElement productFromDropdown : dropdownList) {
-//            productsFromDropdownStrings.add(productFromDropdown.getText());
-//            logger.info("-----> Product name in dropdown is {}", productFromDropdown.getText() + " <-----");
-//        }
-//        System.out.println(" ------------- KONIEC PETLI");
-//        return productsFromDropdownStrings;
-//    }
-
     public int getDropdownSize() {
         wait.until(ExpectedConditions.visibilityOf(dropdown));
         return dropdownList.size();
@@ -78,6 +55,7 @@ public class HeaderPage extends BasePage {
         for (WebElement category : categories) {
             if (category.getText().equals(categoryName)) {
                 category.click();
+                logger.info("-----> Clicked on category {}", categoryName);
             } else {
                 logger.info("The categories don't match");
             }
