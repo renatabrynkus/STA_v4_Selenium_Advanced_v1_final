@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BasketAndCheckoutTest extends Pages {
+public class BasketTest extends Pages {
 
     @ParameterizedTest
     @CsvSource("ART, THE BEST IS YET POSTER, 3")
@@ -14,7 +14,6 @@ public class BasketAndCheckoutTest extends Pages {
         headerPage.clickOnCategory(category);
         productsPage.openProduct(productName);
         productPage.changeQuantity(quantity);
-
 
         assertThat(cartPopupPage.getProductName()).isEqualTo(productName);
         assertThat(cartPopupPage.getUnitPrice()).isEqualTo(productPage.getPrice());

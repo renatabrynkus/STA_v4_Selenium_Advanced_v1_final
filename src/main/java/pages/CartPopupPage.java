@@ -41,6 +41,9 @@ public class CartPopupPage extends BasePage {
     @FindBy(css = ".btn-secondary")
     private WebElement continueShoppingBtn;
 
+    @FindBy(css = ".cart-content-btn > .btn-primary")
+    private WebElement proceedToCheckoutBtn;
+
     public String getProductName() {
         wait.until(ExpectedConditions.visibilityOf(cartPopup));
         return productName.getText();
@@ -49,10 +52,6 @@ public class CartPopupPage extends BasePage {
     public String getUnitPrice() {
         logger.info("-----> Unit price in the cart is {}", unitPrice.getText());
         return unitPrice.getText();
-    }
-
-    public WebElement getPriceSum() {
-        return priceSum;
     }
 
     public String getQuantity() {
@@ -89,5 +88,10 @@ public class CartPopupPage extends BasePage {
     public void clickContinueShopping() {
         logger.info("-----> Clicking Continue shopping button <-----");
         click(continueShoppingBtn);
+    }
+
+    public void clickProceedToCheckout() {
+        logger.info("-----> Clicking Proceed to checkout button <------");
+        click(proceedToCheckoutBtn);
     }
 }

@@ -31,6 +31,9 @@ public class HeaderPage extends BasePage {
     @FindBy(css = ".cart-products-count")
     private WebElement cartCount;
 
+    @FindBy(css = ".user-info .hidden-sm-down")
+    private WebElement signInBtn;
+
     public HeaderPage enterTextToSearchField(String search) {
         searchField.sendKeys(search);
         return this;
@@ -88,5 +91,11 @@ public class HeaderPage extends BasePage {
     public int getCartCount() {
         logger.info("-----> Cart count is {}", cartCount.getText());
         return Integer.parseInt(cartCount.getText().replaceAll("\\(", "").replaceAll("\\)", ""));
+    }
+
+    public LoginPage clickOnSignInButton() {
+        logger.info("-----> Clicking on Sign in button <-----");
+        signInBtn.click();
+        return new LoginPage(driver);
     }
 }

@@ -40,8 +40,9 @@ public class ProductPage extends BasePage {
         quantityUp.click();
     }
 
-    private void addToCart() {
+    public CartPopupPage addToCart() {
         logger.info("----> Clicking Add to cart button <-----");
         click(addToCartBtn);
+        return new CartPopupPage(driver);
     }
 }
