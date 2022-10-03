@@ -20,6 +20,9 @@ public class ProductPage extends BasePage {
     @FindBy(css = ".add-to-cart")
     private WebElement addToCartBtn;
 
+    @FindBy(css = ".current-price span")
+    private WebElement price;
+
     public void changeQuantity(int qtyUp) {
         wait.until(ExpectedConditions.visibilityOf(quantity));
         for (int i = 1; i < qtyUp; i++) {
@@ -28,12 +31,17 @@ public class ProductPage extends BasePage {
         addToCart();
     }
 
+    public String getPrice() {
+        return price.getText();
+    }
+
     private void clickOnQty() {
         logger.info("-----> Increasing quantity <-----");
         quantityUp.click();
     }
 
     private void addToCart() {
+        logger.info("----> Clicking Add to cart button <-----");
         click(addToCartBtn);
     }
 }

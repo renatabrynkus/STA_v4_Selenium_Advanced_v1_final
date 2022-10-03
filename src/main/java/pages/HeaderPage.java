@@ -28,6 +28,9 @@ public class HeaderPage extends BasePage {
     @FindBy(css = "#top-menu > .category")
     private List<WebElement> categories;
 
+    @FindBy(css = ".cart-products-count")
+    private WebElement cartCount;
+
     public HeaderPage enterTextToSearchField(String search) {
         searchField.sendKeys(search);
         return this;
@@ -80,5 +83,10 @@ public class HeaderPage extends BasePage {
 
     public WebElement getCategory(int i) {
         return categories.get(i);
+    }
+
+    public int getCartCount() {
+        logger.info("-----> Cart count is {}", cartCount.getText());
+        return Integer.parseInt(cartCount.getText().replaceAll("\\(", "").replaceAll("\\)", ""));
     }
 }

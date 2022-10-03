@@ -10,17 +10,18 @@ public class BasketAndCheckoutTest extends Pages {
 
     @ParameterizedTest
     @CsvSource("ART, THE BEST IS YET POSTER, 3")
-    void shouldAddProductToCart(String category, String productName, int quantity) throws InterruptedException {
+    void shouldAddProductToCart(String category, String productName, int quantity) {
         headerPage.clickOnCategory(category);
         productsPage.openProduct(productName);
         productPage.changeQuantity(quantity);
 
 
         assertThat(cartPopupPage.getProductName()).isEqualTo(productName);
-
-
-
-        Thread.sleep(5000);
-
+        assertThat(cartPopupPage.getUnitPrice()).isEqualTo(productPage.getPrice());
+        assertThat(cartPopupPage.getQuantity()).isEqualTo(String.valueOf(quantity));
+        assertThat(cartPopupPage.getNumberOfProductsFromMessage()).isEqualTo(String.valueOf(quantity));
+        assertThat(cartPopupPage.getTotalValue()).isEqualTo(cartPopupPage.totalValueShouldBe());
+        cartPopupPage.clickContinueShopping();
+        assertThat(headerPage.getCartCount()).isEqualTo(quantity);
     }
 }
