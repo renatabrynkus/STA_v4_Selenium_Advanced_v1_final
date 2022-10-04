@@ -5,3 +5,6 @@ browser:
   browser.webelement.timeout: 60
 environment:
   appUrl: http://146.59.32.4/index.php
+  address: Hogwarts 1
+  postcode: 00-000
+  city: Hogsmeade

@@ -90,8 +90,10 @@ public class CartPopupPage extends BasePage {
         click(continueShoppingBtn);
     }
 
-    public void clickProceedToCheckout() {
+    public CartPage clickProceedToCheckout() {
+        wait.until(ExpectedConditions.visibilityOf(proceedToCheckoutBtn));
         logger.info("-----> Clicking Proceed to checkout button <------");
         click(proceedToCheckoutBtn);
+        return new CartPage(driver);
     }
 }

@@ -10,6 +10,7 @@ public class Pages extends TestBase {
     public FilterPage filterPage;
     public ProductPage productPage;
     public CartPopupPage cartPopupPage;
+    public CartPage cartPage;
 
     @BeforeEach
     public void pagesSetup() {
@@ -18,5 +19,6 @@ public class Pages extends TestBase {
         filterPage = new FilterPage(driver);
         productPage = new ProductPage(driver);
         cartPopupPage = new CartPopupPage(driver);
+        cartPage = new CartPage(driver);
     }
 }

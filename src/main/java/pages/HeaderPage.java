@@ -94,6 +94,7 @@ public class HeaderPage extends BasePage {
     }
 
     public LoginPage clickOnSignInButton() {
+        wait.until(ExpectedConditions.visibilityOf(signInBtn));
         logger.info("-----> Clicking on Sign in button <-----");
         signInBtn.click();
         return new LoginPage(driver);
