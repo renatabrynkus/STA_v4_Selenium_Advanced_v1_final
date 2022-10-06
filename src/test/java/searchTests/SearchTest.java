@@ -12,10 +12,10 @@ public class SearchTest extends Pages {
     @Test
     void shouldSearchForRandomProduct() {
         logger.info("----------> Started test shouldSearchForRandomProduct() <----------");
-        String expectedProduct = productsPage.getRandomProductName();
+        String expectedProduct = popularProductsPage.getRandomProductName();
         headerPage.enterTextToSearchField(expectedProduct)
                 .clickSearch();
-        assertThat(productsPage.getProductName()).isEqualTo(expectedProduct);
+        assertThat(popularProductsPage.getProductName()).isEqualTo(expectedProduct);
     }
 
     @ParameterizedTest

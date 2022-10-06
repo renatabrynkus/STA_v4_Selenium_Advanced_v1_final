@@ -12,7 +12,7 @@ public class BasketTest extends Pages {
     @CsvSource("ART, THE BEST IS YET POSTER, 3")
     void shouldAddProductToCart(String category, String productName, int quantity) {
         headerPage.clickOnCategory(category);
-        productsPage.openProduct(productName);
+        popularProductsPage.openProduct(productName);
         productPage.changeQuantity(quantity);
 
         assertThat(cartPopupPage.getProductName()).isEqualTo(productName);

@@ -3,21 +3,28 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ProductsPage extends BasePage {
+public class PopularProductsPage extends BasePage {
 
-    public ProductsPage(WebDriver driver) {
+    public PopularProductsPage(WebDriver driver) {
         super(driver);
     }
 
     @FindBy(css = ".product")
     private List<WebElement> popularProducts;
 
-    public List<ProductMiniaturePage> getAllProducts() {
+    @FindBy(css = ".all-product-link")
+    private WebElement allProductsBtn;
+
+    @FindBy(css = ".h1")
+    private WebElement homeField;
+
+    public List<ProductMiniaturePage> getAllPopularProducts() {
         List<ProductMiniaturePage> allPopularProductsPOP = new ArrayList<>();
         for (WebElement popularProduct : popularProducts) {
             allPopularProductsPOP.add(new ProductMiniaturePage(popularProduct));
@@ -26,7 +33,7 @@ public class ProductsPage extends BasePage {
     }
 
     public void openProduct(String productToOpen) {
-        for (ProductMiniaturePage productMiniature : getAllProducts()) {
+        for (ProductMiniaturePage productMiniature : getAllPopularProducts()) {
             if (productMiniature.getProductName().equals(productToOpen)) {
                 logger.info("-----> Clicking on {}", productMiniature.getProductName());
                 productMiniature.getThumbnail().click();
@@ -41,8 +48,8 @@ public class ProductsPage extends BasePage {
     }
 
     public boolean areProductsInPriceRange(double lowerBound, double higherBound) {
-        for (ProductMiniaturePage popularProduct : getAllProducts()) {
-            if (!(popularProduct.getPrice() >= lowerBound) && !(popularProduct.getPrice() <= higherBound)) {
+        for (ProductMiniaturePage popularProduct : getAllPopularProducts()) {
+            if (!(popularProduct.getCurrentPrice() >= lowerBound) && !(popularProduct.getCurrentPrice() <= higherBound)) {
                 logger.info("----------> The product {} is not in the specified range", popularProduct.getProductName());
                 return false;
             }
@@ -52,15 +59,21 @@ public class ProductsPage extends BasePage {
     }
 
     public String getProductName() {
-        String productName = getAllProducts().get(0).getProductName();
+        String productName = getAllPopularProducts().get(0).getProductName();
         logger.info("----------> Product found is {}", productName + " <----------");
         return productName;
     }
 
     public String getRandomProductName() {
         Random random = new Random();
-        String randomProductName = getAllProducts().get(random.nextInt(popularProducts.size())).getProductName();
+        String randomProductName = getAllPopularProducts().get(random.nextInt(popularProducts.size())).getProductName();
         logger.info("----------> Random product name is {} ", randomProductName + " <----------");
         return randomProductName;
+    }
+
+    public AllProductsPage openAllProducts() {
+        click(allProductsBtn);
+        wait.until(ExpectedConditions.visibilityOf(homeField));
+        return new AllProductsPage(driver);
     }
 }

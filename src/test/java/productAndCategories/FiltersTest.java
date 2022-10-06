@@ -15,11 +15,11 @@ public class FiltersTest extends Pages {
 
         headerPage.clickOnCategory(category)
                 .isSideFilterDisplayed();
-        int noOfProductsInCategory = productsPage.getProductsSize(productsPage.getAllProducts());
+        int noOfProductsInCategory = popularProductsPage.getProductsSize(popularProductsPage.getAllPopularProducts());
 
         filterPage.setPriceFilter(lowerBound, higherBound);
-        assertThat(productsPage.areProductsInPriceRange(lowerBound, higherBound)).isTrue();
+        assertThat(popularProductsPage.areProductsInPriceRange(lowerBound, higherBound)).isTrue();
         filterPage.clearFilter();
-        assertThat(noOfProductsInCategory).isEqualTo(productsPage.getProductsSize(productsPage.getAllProducts()));
+        assertThat(noOfProductsInCategory).isEqualTo(popularProductsPage.getProductsSize(popularProductsPage.getAllPopularProducts()));
     }
 }

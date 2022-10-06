@@ -71,9 +71,6 @@ public class FilterPage extends BasePage {
         return this;
     }
 
-    private void moveSlider() {
-    }
-
     public String getPriceRange() {
         logger.info("----------> Current price range is {}", priceRange.getText() + " <----------");
         return priceRange.getText();

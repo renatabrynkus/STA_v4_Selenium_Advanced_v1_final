@@ -15,7 +15,10 @@ public class ProductMiniaturePage {
     private WebElement productName;
 
     @FindBy(css = "div .price")
-    private WebElement price;
+    private WebElement currentPrice;
+
+    @FindBy(css = ".regular-price")
+    private WebElement priceBeforeSale;
 
     @FindBy(css = ".thumbnail")
     private WebElement thumbnail;
@@ -24,8 +27,8 @@ public class ProductMiniaturePage {
         return productName.getText();
     }
 
-    public double getPrice() {
-        String productPrice = price.getText().replaceAll("\\$", "");
+    public double getCurrentPrice() {
+        String productPrice = currentPrice.getText().replaceAll("\\$", "");
         return Double.parseDouble(productPrice);
     }
 
@@ -33,4 +36,7 @@ public class ProductMiniaturePage {
         return thumbnail;
     }
 
+    public WebElement getPriceBeforeSale() {
+        return priceBeforeSale;
+    }
 }

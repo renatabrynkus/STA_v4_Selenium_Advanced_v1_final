@@ -6,19 +6,23 @@ import pages.*;
 public class Pages extends TestBase {
 
     public HeaderPage headerPage;
-    public ProductsPage productsPage;
+    public PopularProductsPage popularProductsPage;
     public FilterPage filterPage;
     public ProductPage productPage;
     public CartPopupPage cartPopupPage;
+    public CheckoutPage checkoutPage;
+    public AllProductsPage allProductsPage;
     public CartPage cartPage;
 
     @BeforeEach
     public void pagesSetup() {
         headerPage = new HeaderPage(driver);
-        productsPage = new ProductsPage(driver);
+        popularProductsPage = new PopularProductsPage(driver);
         filterPage = new FilterPage(driver);
         productPage = new ProductPage(driver);
         cartPopupPage = new CartPopupPage(driver);
+        checkoutPage = new CheckoutPage(driver);
+        allProductsPage = new AllProductsPage(driver);
         cartPage = new CartPage(driver);
     }
 }

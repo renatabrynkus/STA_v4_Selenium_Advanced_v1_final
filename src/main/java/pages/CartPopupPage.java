@@ -86,14 +86,16 @@ public class CartPopupPage extends BasePage {
         return df.format(total).replaceAll(",", ".");
     }
     public void clickContinueShopping() {
+        wait.until(ExpectedConditions.visibilityOf(continueShoppingBtn));
         logger.info("-----> Clicking Continue shopping button <-----");
         click(continueShoppingBtn);
+        wait.until(ExpectedConditions.invisibilityOf(cartPopup));
     }
 
-    public CartPage clickProceedToCheckout() {
+    public CheckoutPage clickProceedToCheckout() {
         wait.until(ExpectedConditions.visibilityOf(proceedToCheckoutBtn));
         logger.info("-----> Clicking Proceed to checkout button <------");
         click(proceedToCheckoutBtn);
-        return new CartPage(driver);
+        return new CheckoutPage(driver);
     }
 }

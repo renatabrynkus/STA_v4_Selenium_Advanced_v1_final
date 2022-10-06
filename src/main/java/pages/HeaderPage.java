@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HeaderPage extends BasePage {
@@ -33,6 +32,9 @@ public class HeaderPage extends BasePage {
 
     @FindBy(css = ".user-info .hidden-sm-down")
     private WebElement signInBtn;
+
+    @FindBy(css = ".account > .hidden-sm-down")
+    private WebElement userAccount;
 
     public HeaderPage enterTextToSearchField(String search) {
         searchField.sendKeys(search);
@@ -98,5 +100,10 @@ public class HeaderPage extends BasePage {
         logger.info("-----> Clicking on Sign in button <-----");
         signInBtn.click();
         return new LoginPage(driver);
+    }
+
+    public OrderHistoryPage goToUserAccount () {
+        click(userAccount);
+        return new OrderHistoryPage(driver);
     }
 }
