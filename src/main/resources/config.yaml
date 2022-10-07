@@ -11,3 +11,16 @@ environment:
   city: Hogsmeade
   payment: Payments by check
   shippingMethod: My carrier
+  cartMessage: There are no more items in your cart
+  status: Awaiting check payment
+  totalPrice: $36.00
+  deliveryAddress: |-
+    Harry Potter
+    Privet Drive 4
+    30-333 Little Whinging
+    Poland
+  invoiceAddress: |-
+    Harry Potter
+    Hogwarts 1
+    00-000 Hogsmeade
+    Poland

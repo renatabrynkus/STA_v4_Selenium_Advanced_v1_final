@@ -14,8 +14,6 @@ public class OrderHistoryPage extends BasePage {
         super(driver);
     }
 
-    CheckoutPage checkoutPage = new CheckoutPage(driver);
-
     @FindBy(css = "#content .links")
     private WebElement userAccountLinks;
 
@@ -29,19 +27,21 @@ public class OrderHistoryPage extends BasePage {
     private List<WebElement> orders;
 
 
-    public void goToOrderHistory() {
+    public void goToOrderHistory(String orderReference) {
         wait.until(ExpectedConditions.visibilityOf(userAccountLinks));
         orderHistoryBtn.click();
         wait.until(ExpectedConditions.visibilityOf(orderHistory));
-        openPreviousOrder();
-
-        //order z carta musi sie zapisac wczesniej
+        openPreviousOrder(orderReference);
     }
 
-    private void openPreviousOrder() {
+    private void openPreviousOrder(String orderReference) {
         for (OrderHistoryRowPage order : getAllOrders()) {
-            if (order.getOrderReference().getText().equals(checkoutPage.getOrderReference())) {
+            if (order.getOrderReference().getText().equals(orderReference)) {
+                logger.info("-----> Order reference displayed after booking an order is {}",
+                        orderReference + " <-----");
+                logger.info(" cart page order ref is {}", orderReference);
                 click(order.getDetails());
+                break;
             }
         }
     }

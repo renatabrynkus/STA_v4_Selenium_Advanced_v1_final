@@ -2,6 +2,7 @@ package pages;
 
 import orderDetails.OrderDetails;
 import orderDetails.Product;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,8 +21,38 @@ public class CartPage extends BasePage {
     @FindBy(css = ".cart-item")
     private List<WebElement> productsInCart;
 
+    @FindBy(css = ".cart-total > .value")
+    private WebElement totalOrderValue;
+
+    @FindBy(css = ".remove-from-cart")
+    private WebElement removeBtn;
+
+    @FindBy(css = ".no-items")
+    private WebElement noItemsMessage;
+
+    public ArrayList<ProductInCartPage> getProductsInCartPage() {
+        return productsInCartPage;
+    }
+
+    private double getTotalOrderValueDouble() {
+        return Double.parseDouble(totalOrderValue.getText().substring(1));
+    }
+
+    public String getTotalOrderValue() {
+        return df.format(getTotalOrderValueDouble()).replaceAll(",", ".");
+    }
+
+    public String getNoItemsMessage() {
+        logger.info("-----> The message in the cart is {}", noItemsMessage.getText() + " <-----");
+        return noItemsMessage.getText();
+    }
+
+
     public OrderDetails getOrderDetailsCart() {
-        convertProductsInCartToProductsList();
+        try {
+            convertProductsInCartToProductsList();
+        } catch (StaleElementReferenceException e) {
+        }
         return orderDetailsCart;
     }
 
@@ -35,8 +66,19 @@ public class CartPage extends BasePage {
     public void convertProductsInCartToProductsList() {
         for (ProductInCartPage productInCart : productsInCartPage) {
             orderDetailsCart.addToProductsToTheCart(new Product(productInCart.getProductFromCartName(),
-                    productInCart.getUnitPrice(), productInCart.getQuantity()));
+                    productInCart.getUnitPrice(), productInCart.getQuantity(), productInCart.getTotalPrice()));
             logger.info("-----> Product {} added to productsList", productInCart.getProductFromCartName() + " <-----");
         }
+    }
+
+    public void removeProductFromCart(Product productToRemove) throws InterruptedException {
+        logger.info("-----> Removing product {} from the cart", productToRemove.getName() + " <-----");
+        orderDetailsCart.getProductsInCart().remove(productToRemove);
+        removeBtn.click();
+        Thread.sleep(5000);
+    }
+
+    public Product getProductFromOrderList() {
+        return orderDetailsCart.getProductsInCart().get(0);
     }
 }

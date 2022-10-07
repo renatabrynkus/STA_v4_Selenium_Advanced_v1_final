@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ProductInCartPage {
 
@@ -23,6 +24,9 @@ public class ProductInCartPage {
     @FindBy(css = ".price > .product-price")
     private WebElement totalPrice;
 
+    @FindBy(css = ".remove-from-cart > .material-icons")
+    private WebElement removeFromCartBtn;
+
 
     public String getProductFromCartName() {
         return productFromCartName.getText();
@@ -36,7 +40,11 @@ public class ProductInCartPage {
         return Integer.parseInt(quantity.getAttribute("value"));
     }
 
-    public WebElement getTotalPrice() {
-        return totalPrice;
+    public double getTotalPrice() {
+        return Double.parseDouble(totalPrice.getText().substring(1));
+    }
+
+    public WebElement getRemoveFromCartBtn() {
+        return removeFromCartBtn;
     }
 }

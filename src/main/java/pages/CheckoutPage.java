@@ -172,6 +172,7 @@ public class CheckoutPage extends BasePage {
     }
 
     public String getOrderReference() {
-        return orderReference.getText().substring(16);
+        return orderReference.getText().substring(17);
     }
+
 }

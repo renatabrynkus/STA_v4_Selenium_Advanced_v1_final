@@ -12,7 +12,19 @@ public class OrderDetails {
     }
 
     public void addToProductsToTheCart(Product product) {
+        if (productsInCart.stream().anyMatch(o -> o.getName().equals(product.getName()))) {
+            for (Product productInCart : productsInCart) {
+                if (productInCart.getName().equals(product.getName())) {
+                    productInCart.setQuantity(productInCart.getQuantity() + product.getQuantity());
+                }
+            }
+        } else {
             getProductsInCart().add(product);
+        }
+    }
+
+    public void removeProduct(Product product) {
+        productsInCart.remove(product);
     }
 
     @Override

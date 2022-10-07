@@ -5,10 +5,11 @@ public class Product {
     private int quantity;
     private double totalPrice;
 
-    public Product(String name, double price, int quantity) {
+    public Product(String name, double price, int quantity, double totalPrice) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
+        this.totalPrice = totalPrice;
     }
 
     public String getName() {
@@ -25,6 +26,10 @@ public class Product {
 
     public double getTotalPrice() {
         return price * quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     @Override
