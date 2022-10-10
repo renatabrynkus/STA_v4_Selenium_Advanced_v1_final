@@ -56,7 +56,7 @@ public class ProductPage extends BasePage {
         quantityUp.click();
     }
 
-    public void addToCartRandomQty() {
+    public double addToCartRandomQty() {
         wait.until(ExpectedConditions.visibilityOf(addToCartBtn));
         int currentQuantity = changeQtyToRandom();
         click(addToCartBtn);
@@ -67,6 +67,7 @@ public class ProductPage extends BasePage {
         orderDetailsAdded.addToProductsToTheCart(productToAdd);
         totalPriceSumWithShipping += productToAdd.getTotalPrice();
         BigDecimal bd = new BigDecimal(totalPriceSumWithShipping).setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
     public void addToCart() {
