@@ -53,6 +53,4 @@ public class OrderHistoryPage extends BasePage {
         }
         return allOrders;
     }
-
-
 }

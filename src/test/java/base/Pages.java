@@ -14,6 +14,7 @@ public class Pages extends TestBase {
     public AllProductsPage allProductsPage;
     public CartPage cartPage;
     public OrderDetailsPage orderDetailsPage;
+    public OrderHistoryPage orderHistoryPage;
 
     @BeforeEach
     public void pagesSetup() {
@@ -26,5 +27,6 @@ public class Pages extends TestBase {
         allProductsPage = new AllProductsPage(driver);
         cartPage = new CartPage(driver);
         orderDetailsPage = new OrderDetailsPage(driver);
+        orderHistoryPage = new OrderHistoryPage(driver);
     }
 }

@@ -15,12 +15,13 @@ public class CheckoutTest extends Pages {
     Date date = new Date();
 
     @ParameterizedTest
-    @CsvSource("ART, THE BEST IS YET POSTER, YOUR ORDER IS CONFIRMED, 29.00, $7.00, ")
-    void shouldCheckout(String category, String productName, String orderConfirmationMsg, String unitPrice, String shipping) {
+    @CsvSource("ART, THE BEST IS YET POSTER, YOUR ORDER IS CONFIRMED, 29.00, $7.00")
+    void checkoutDataShouldBeCorrect(String category, String productName, String orderConfirmationMsg, String unitPrice, String shipping) {
+        logger.info("-----> Started test shouldCheckSubcategories() <-----");
         headerPage.clickOnSignInButton()
                 .logIn();
         headerPage.clickOnCategory(category);
-        popularProductsPage.openProduct(productName);
+                        popularProductsPage.openProduct(productName);
         productPage.addToCart();
         cartPopupPage.clickProceedToCheckout()
                 .processOrder();

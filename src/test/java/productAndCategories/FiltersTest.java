@@ -11,8 +11,7 @@ public class FiltersTest extends Pages {
     @ParameterizedTest
     @CsvSource(value = {"ART, 9.00, 10.00"})
     void shouldDisplayCorrectProductsForFilter(String category, double lowerBound, double higherBound) {
-        logger.info("----------> Started test shouldDisplayCorrectProductsForFilter() <----------");
-
+        logger.info("-----> Started test shouldDisplayCorrectProductsForFilter() <-----");
         headerPage.clickOnCategory(category)
                 .isSideFilterDisplayed();
         int noOfProductsInCategory = popularProductsPage.getProductsSize(popularProductsPage.getAllPopularProducts());

@@ -6,6 +6,7 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,11 +48,11 @@ public class CartPage extends BasePage {
         return noItemsMessage.getText();
     }
 
-
     public OrderDetails getOrderDetailsCart() {
         try {
             convertProductsInCartToProductsList();
         } catch (StaleElementReferenceException e) {
+            logger.info("-----> StaleElementException caught <-----");
         }
         return orderDetailsCart;
     }
@@ -75,7 +76,7 @@ public class CartPage extends BasePage {
         logger.info("-----> Removing product {} from the cart", productToRemove.getName() + " <-----");
         orderDetailsCart.getProductsInCart().remove(productToRemove);
         removeBtn.click();
-        Thread.sleep(5000);
+        Thread.sleep(500);
     }
 
     public Product getProductFromOrderList() {

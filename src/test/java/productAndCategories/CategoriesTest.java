@@ -1,7 +1,7 @@
 package productAndCategories;
 
 import base.Pages;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.RepeatedTest;
 import org.openqa.selenium.WebElement;
 import pages.CategoryPage;
 
@@ -9,9 +9,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class CategoriesTest extends Pages {
 
-    @Test
+    @RepeatedTest(10)
     void shouldCheckCategories() {
-        logger.info("----------> started test shouldCheckCategories <-----------");
+        logger.info("-----> started test shouldCheckCategories <------");
         for (int i = 0; i < headerPage.getCategoriesSize(); i++) {
             CategoryPage categoryPage = headerPage.goToCategory(headerPage.getCategory(i));
 
@@ -21,9 +21,9 @@ public class CategoriesTest extends Pages {
         }
     }
 
-    @Test
+    @RepeatedTest(10)
     void shouldCheckSubcategories() {
-        logger.info("----------> Started test shouldCheckSubcategories() <----------");
+        logger.info("-----> Started test shouldCheckSubcategories() <-----");
         for (int i = 0; i < headerPage.getCategoriesSize(); i++) {
             CategoryPage categoryPage = headerPage.goToCategory(headerPage.getCategory(i));
             if (categoryPage.areSubcategoriesAvailable()) {

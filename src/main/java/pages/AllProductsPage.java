@@ -23,11 +23,11 @@ public class AllProductsPage extends BasePage {
         return allProductsPOPList;
     }
 
-    public ProductPage selectRandomProduct() {
+    public void selectRandomProduct() {
         ProductMiniaturePage randomProduct = addProductsToList().get(random.nextInt(addProductsToList().size()));
         logger.info("-----> Random product is {}", randomProduct.getProductName());
         randomProduct.getThumbnail().click();
-        return new ProductPage(driver);
+        new ProductPage(driver);
     }
 
     public void goToCart() {
