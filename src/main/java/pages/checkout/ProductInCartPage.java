@@ -1,4 +1,4 @@
-package pages;
+package pages.checkout;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -42,9 +42,5 @@ public class ProductInCartPage {
 
     public double getTotalPrice() {
         return Double.parseDouble(totalPrice.getText().substring(1));
-    }
-
-    public WebElement getRemoveFromCartBtn() {
-        return removeFromCartBtn;
     }
 }

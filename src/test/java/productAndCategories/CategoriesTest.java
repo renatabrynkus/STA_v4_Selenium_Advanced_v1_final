@@ -3,7 +3,7 @@ package productAndCategories;
 import base.Pages;
 import org.junit.jupiter.api.RepeatedTest;
 import org.openqa.selenium.WebElement;
-import pages.CategoryPage;
+import pages.search.CategoryPage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -1,8 +1,11 @@
-package pages;
+package pages.product;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.BasePage;
+import pages.product.ProductMiniaturePage;
+import pages.product.ProductPage;
 
 import java.util.ArrayList;
 import java.util.List;

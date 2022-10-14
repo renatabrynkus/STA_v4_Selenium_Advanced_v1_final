@@ -1,9 +1,12 @@
-package pages;
+package pages.home;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.product.AllProductsPage;
+import pages.BasePage;
+import pages.product.ProductMiniaturePage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,37 +46,30 @@ public class PopularProductsPage extends BasePage {
     }
 
     public int getProductsSize(List<ProductMiniaturePage> products) {
-        logger.info("----> The size of products list is {} ", products.size() + " <-----");
         return products.size();
     }
 
     public boolean areProductsInPriceRange(double lowerBound, double higherBound) {
         for (ProductMiniaturePage popularProduct : getAllPopularProducts()) {
             if (!(popularProduct.getCurrentPrice() >= lowerBound) && !(popularProduct.getCurrentPrice() <= higherBound)) {
-                logger.info("----------> The product {} is not in the specified range", popularProduct.getProductName());
                 return false;
             }
         }
-        logger.info("-----> All products are in the specified price range <-----");
         return true;
     }
 
     public String getProductName() {
-        String productName = getAllPopularProducts().get(0).getProductName();
-        logger.info("----------> Product found is {}", productName + " <----------");
-        return productName;
+        return getAllPopularProducts().get(0).getProductName();
     }
 
     public String getRandomProductName() {
         Random random = new Random();
-        String randomProductName = getAllPopularProducts().get(random.nextInt(popularProducts.size())).getProductName();
-        logger.info("----------> Random product name is {} ", randomProductName + " <----------");
-        return randomProductName;
+        return getAllPopularProducts().get(random.nextInt(popularProducts.size())).getProductName();
     }
 
-    public AllProductsPage openAllProducts() {
+    public void openAllProducts() {
         click(allProductsBtn);
         wait.until(ExpectedConditions.visibilityOf(homeField));
-        return new AllProductsPage(driver);
+        new AllProductsPage(driver);
     }
 }

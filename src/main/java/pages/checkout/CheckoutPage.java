@@ -1,9 +1,10 @@
-package pages;
+package pages.checkout;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.BasePage;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -92,7 +93,6 @@ public class CheckoutPage extends BasePage {
 
     private void proceedToCheckout() {
         wait.until(ExpectedConditions.visibilityOf(proceedToCheckoutBtn));
-        logger.info("-----> Clicking {}", proceedToCheckoutBtn.getText() + " button <------");
         proceedToCheckoutBtn.click();
         wait.until(ExpectedConditions.visibilityOf(differentBillingAddress));
     }
@@ -126,17 +126,14 @@ public class CheckoutPage extends BasePage {
     }
 
     public String getProductName() {
-        logger.info("-----> Product name from the order is {}", productName.getText().substring(0, 22));
         return productName.getText().substring(0, 22);
     }
 
     public String getUnitPrice() {
-        logger.info("-----> Unit price is {}", unitPrice.getText() + " <-----");
         return unitPrice.getText().substring(1);
     }
 
-        public String getPriceSum() {
-        logger.info("-----> Price sum is {}", priceSum.getText() + " <-----");
+    public String getPriceSum() {
         return priceSum.getText().substring(1);
     }
 
@@ -148,7 +145,6 @@ public class CheckoutPage extends BasePage {
     }
 
     public String getShippingPrice() {
-        logger.info("-----> Shipping price is {}", shippingPrice.getText() + " <-----");
         return shippingPrice.getText();
     }
 
@@ -157,17 +153,14 @@ public class CheckoutPage extends BasePage {
     }
 
     public String getPaymentMethod() {
-        logger.info("-----> Payment method is {}", paymentMethod.getText().substring(15));
         return paymentMethod.getText().substring(16);
     }
 
     public String getShippingMethod() {
-        logger.info("-----> Shipping method is {}", shippingMethod.getText().substring(17, 27) + " <-----");
         return shippingMethod.getText().substring(17, 27);
     }
 
     public String getTotalPriceFromCheck() {
-        logger.info("-----> Total price from check section is {}", totalPriceFromCheck.getText() + " <-----");
         return totalPriceFromCheck.getText();
     }
 

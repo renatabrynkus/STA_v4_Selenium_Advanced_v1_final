@@ -1,9 +1,12 @@
-package pages;
+package pages.home;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.BasePage;
+import pages.search.CategoryPage;
+import pages.order.OrderHistoryPage;
 
 import java.util.List;
 
@@ -51,30 +54,20 @@ public class HeaderPage extends BasePage {
     }
 
     public String getProductFromDropdownStr(int i) {
-        logger.info("-----> Product name in dropdown is {}", dropdownList.get(i).getText() + " <-----");
         return dropdownList.get(i).getText();
-    }
-
-    public List<WebElement> getCategories() {
-        return categories;
     }
 
     public CategoryPage clickOnCategory(String categoryName) {
         for (WebElement category : categories) {
             if (category.getText().equals(categoryName)) {
                 category.click();
-                logger.info("-----> Clicked on category {}", categoryName);
-            } else {
-                logger.info("The categories don't match");
             }
         }
         return new CategoryPage(driver);
     }
 
     public String getCategoryName(WebElement category) {
-        String headerCategoryName = category.getText();
-        logger.info("----------> Header category is {}", headerCategoryName + " <----------");
-        return headerCategoryName;
+        return category.getText();
     }
 
     public CategoryPage goToCategory(WebElement category) {
@@ -97,8 +90,7 @@ public class HeaderPage extends BasePage {
 
     public LoginPage clickOnSignInButton() {
         wait.until(ExpectedConditions.visibilityOf(signInBtn));
-        logger.info("-----> Clicking on Sign in button <-----");
-        signInBtn.click();
+        click(signInBtn);
         return new LoginPage(driver);
     }
 

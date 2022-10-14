@@ -1,4 +1,4 @@
-package pages;
+package pages.checkout;
 
 import orderDetails.OrderDetails;
 import orderDetails.Product;
@@ -6,7 +6,7 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.BasePage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,15 +44,13 @@ public class CartPage extends BasePage {
     }
 
     public String getNoItemsMessage() {
-        logger.info("-----> The message in the cart is {}", noItemsMessage.getText() + " <-----");
         return noItemsMessage.getText();
     }
 
     public OrderDetails getOrderDetailsCart() {
         try {
             convertProductsInCartToProductsList();
-        } catch (StaleElementReferenceException e) {
-            logger.info("-----> StaleElementException caught <-----");
+        } catch (StaleElementReferenceException ignored) {
         }
         return orderDetailsCart;
     }
@@ -60,7 +58,6 @@ public class CartPage extends BasePage {
     public void addProductsFromCart() {
         for (WebElement line : productsInCart) {
             productsInCartPage.add(new ProductInCartPage(line));
-            logger.info("-----> Added a product from cart to list with ProductsFromCart <------");
         }
     }
 

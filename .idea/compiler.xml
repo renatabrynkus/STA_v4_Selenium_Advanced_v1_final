@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Lesson_8" />
         <module name="STA_v4_Selenium_Advanced_v1" />
       </profile>
     </annotationProcessing>

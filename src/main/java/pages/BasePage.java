@@ -13,7 +13,7 @@ import java.time.Duration;
 import java.util.Random;
 
 public abstract class BasePage {
-    Logger logger = LoggerFactory.getLogger(BasePage.class);
+    protected Logger logger = LoggerFactory.getLogger(BasePage.class);
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected Random random = new Random();

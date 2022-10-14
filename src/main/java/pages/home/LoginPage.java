@@ -1,10 +1,11 @@
-package pages;
+package pages.home;
 
 import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.BasePage;
 
 public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver) {
@@ -37,6 +38,4 @@ public class LoginPage extends BasePage {
     private void enterPassword() {
         password.sendKeys("hogwarts5");
     }
-
-
 }
